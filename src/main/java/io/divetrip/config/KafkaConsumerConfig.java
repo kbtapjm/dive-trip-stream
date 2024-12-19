@@ -1,9 +1,11 @@
 package io.divetrip.config;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
@@ -14,22 +16,27 @@ import java.util.Map;
 
 @EnableKafka
 @Configuration
+@RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
+    private final Environment environment;
+
     /**
-     * 접속 정보
+     * Kafka Consumer 설정
      * @return
      */
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
-        // Map을 이용해 Key, Value 형태로 Kafka Consumer에 필요한 설정을 저장합니다
         Map<String, Object> properties = new HashMap<>();
 
-        // Kafka Broker 위치 저장합니다.
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        // kafka broker 위치 지정
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, environment.getProperty("spring.kafka.consumer.bootstrap-servers"));
 
-        // Kafka Consumer 그룹의 ID 지정, 같은 그룹 ID를 가진 컨슈머들은 메시지를 공유하여 처리합니다.
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroupId");
+        // Kafka Consumer 그룹의 ID 지정, 같은 그룹 ID를 가진 컨슈머들은 메시지를 공유하여 처리
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, environment.getProperty("spring.kafka.consumer.group-id"));
+
+        // offset 이 없거나 더 이상 없는 경우 어떻게 처리할지 전략 결정
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,environment.getProperty("spring.kafka.consumer.auto-offset-reset"));
 
         // Kafka 메시지의 키, 값을 어떻게 역직렬화 할지 설정합니다.
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
@@ -40,18 +47,16 @@ public class KafkaConsumerConfig {
     }
 
     /**
-     * 위에서 정의한 consumerFactory를 사용해 Kafka Listener Containers를 만듬
-     * 이 설정을 사용하여 해당 토픽의 메시지를 가져옵니다.
+     * Kafka Listener Containers 생성(해당 토픽의 메시지를 가져옴)
+     *
      * @return
      */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory
-                = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
         kafkaListenerContainerFactory.setConsumerFactory(consumerFactory());
 
         return kafkaListenerContainerFactory;
     }
-
 
 }
