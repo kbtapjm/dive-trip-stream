@@ -1,4 +1,4 @@
-package io.divetrip.kafka;
+package io.divetrip.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.divetrip.message.model.Notification;
@@ -27,7 +27,7 @@ public class NotificationConsumer {
         if (StringUtils.isNotEmpty(message)) {
             Notification notification = objectMapper.readValue(message, Notification.class);
 
-            log.debug("notification: {}", notification.toString());
+            log.debug("{}", notification.toString());
         }
 
         log.debug("####################################################################################################################");
