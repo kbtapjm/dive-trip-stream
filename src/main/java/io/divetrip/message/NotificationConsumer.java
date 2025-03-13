@@ -1,7 +1,7 @@
 package io.divetrip.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.divetrip.message.model.Notification;
+import io.divetrip.library.message.model.Notification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
