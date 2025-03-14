@@ -11,8 +11,13 @@ repositories {
 
 dependencies {
 	implementation project(':dive-trip-library')
-	
+
+	// webflux
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// kafka
 	implementation 'org.springframework.kafka:spring-kafka'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
