@@ -1,8 +1,8 @@
-package io.divetrip.exception.handler;
+package io.divetrip.stream.exception.handler;
 
-import io.divetrip.enumeration.DiveTripError;
-import io.divetrip.exception.DiveTripException;
-import io.divetrip.exception.dto.ExceptionResponse;
+import io.divetrip.stream.enumeration.DiveTripError;
+import io.divetrip.stream.exception.DiveTripException;
+import io.divetrip.stream.exception.dto.ExceptionResponse;
 import io.divetrip.library.util.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

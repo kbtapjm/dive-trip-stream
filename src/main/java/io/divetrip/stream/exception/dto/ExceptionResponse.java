@@ -1,4 +1,4 @@
-package io.divetrip.exception.dto;
+package io.divetrip.stream.exception.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

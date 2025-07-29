@@ -1,4 +1,4 @@
-package io.divetrip.message;
+package io.divetrip.stream.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

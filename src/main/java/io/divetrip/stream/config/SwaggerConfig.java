@@ -1,4 +1,4 @@
-package io.divetrip.config;
+package io.divetrip.stream.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

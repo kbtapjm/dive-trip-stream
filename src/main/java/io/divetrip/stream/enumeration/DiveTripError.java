@@ -1,6 +1,6 @@
-package io.divetrip.enumeration;
+package io.divetrip.stream.enumeration;
 
-import io.divetrip.exception.DiveTripException;
+import io.divetrip.stream.exception.DiveTripException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

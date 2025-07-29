@@ -1,4 +1,4 @@
-package io.divetrip.config;
+package io.divetrip.stream.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

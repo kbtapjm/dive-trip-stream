@@ -1,4 +1,4 @@
-package io.divetrip.config;
+package io.divetrip.stream.config;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

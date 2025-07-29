@@ -1,4 +1,4 @@
-package io.divetrip.config;
+package io.divetrip.stream.config;
 
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
