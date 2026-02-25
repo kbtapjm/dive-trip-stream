@@ -10,6 +10,10 @@ server:
     whitelabel:
       enabled: true
 
+spring:
+  profiles:
+    active: dev
+
 
 
 
